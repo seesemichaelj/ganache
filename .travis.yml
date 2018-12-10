@@ -55,3 +55,19 @@ script:
 - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
     npm run build-mac;
   fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: APSSwoS1goaK9nxn6RoLjyUQxlHGpn5bh8IOznDDfqAOHjIcXsE+e2lEEkBFjVuKfBrZMc7+7dpFFdOZDNtaMfwQ8LaCSd+QtUCaSdzOOHCKA+ov66xR7hsXdb09zfh1/vZ+TYIYuCq+2onkDNEiEvSBxVDH9TFduDZk1rqxyQCYE00fLQaJTPyzjSUtaGpepqnDjwLhGkGYI1kezx81IvodYntiHXAvOloROhWY5PssIRoNTwILGQFsiw0br8Kg4jdwWIJfljlTRkXg19a8zD+NnOV0M201ks9L0wVfZKWH2s2qbzqJqfmFRbgtZgF73DmvPC/tvF3WJZY23w2Ecq8m4TLRtsJKV7S4gjOi65oJIMxgFqsKZ5zb+Jw1oz1V8bhXzM7DCCvKECU5RYr9UQBckcYbi88mwz1zdHi+xq0EaQfshcLwiR0JpWXIY2FHH8glST8j2yHM04yEs+5j8jWkr60eF4fPu71EEGPoxCNvC7JQ+7LetwcqldH7waBoQTIBogrxQcGcxJHxoLq38b6BOoWgH7egoDOHgfM6It78ekzbUzD7M0BXaJ3v2zWwuAaZKeZj20hQxsDczlvGU/CBPrR1teOL/VqP6rVwHz07qbIJR4mHUV67Mt7FZgFKQVX94WiG555FS0Va387e9sG3l06ZWTMLh0kjY2Jphbw=
+  file:
+    - "dist/Ganache-*.AppImage"
+    - "dist/Ganache-*.dmg"
+    - "dist/Ganache-*.dmg.blockmap"
+    - "dist/Ganache-*-mac.zip"
+    - "dist/latest-*.yml"
+  on:
+    tags: true
+    repo: trufflesuite/ganache
+  skip_cleanup: true
+  draft: true
